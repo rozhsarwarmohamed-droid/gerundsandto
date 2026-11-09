@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ezra’s Hobby Diner: like, love, enjoy, hope, want, learn</title>
+<style>
+:root{--cream:#fff3d6;--red:#d9342b;--teal:#0f9d8c;--sun:#ffb703;--navy:#1b2a5c;--paper:#fffdf6;--ok:#0b7a3b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+body{margin:0;padding-bottom:90px;font:24px/1.4 "Trebuchet MS",Roboto,Arial,sans-serif;color:var(--navy);background:var(--cream) radial-gradient(#f4dfae 3px,transparent 4px) 0 0/38px 38px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:14px 26px;background:var(--navy);color:#fff}
+h1{margin:0;font-size:36px;color:var(--sun);flex:1 1 320px}
+#steps{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:6px 16px;border:3px solid #ffffff55;border-radius:30px;font-size:22px;opacity:.65}
+.chip.on{background:var(--red);border-color:#fff;opacity:1;font-weight:700}
+.chip.done{background:var(--teal);border-color:#fff;opacity:1}
+.tools{display:flex;align-items:center;gap:16px;font-size:26px;font-weight:700}
+.tools .btn{min-height:60px;padding:4px 20px;font-size:24px}
+#clock.late{color:#ff8a80}
+.strip{height:22px;background:conic-gradient(var(--navy) 25%,#fff 0 50%,var(--navy) 0 75%,#fff 0) 0 0/44px 44px}
+main{max-width:1180px;margin:28px auto;padding:0 22px}
+.panel{background:var(--paper);border:5px solid var(--navy);border-radius:26px;box-shadow:9px 9px 0 var(--red);padding:26px 32px}
+h2{margin:0 0 6px;font-size:38px}
+h2 small{font-size:22px;font-weight:400;opacity:.7}
+.sub{margin:0 0 20px;font-size:24px}
+.btn,.card{line-height:1.35;font-family:inherit;color:var(--navy);cursor:pointer}
+.btn{min-height:68px;padding:10px 30px;font-size:26px;font-weight:700;background:#fff;border:4px solid var(--navy);border-radius:40px;box-shadow:0 6px 0 var(--navy)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--navy)}
+.go{background:var(--sun)}
+.nav{display:flex;justify-content:space-between;gap:16px;margin-top:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.card{min-height:140px;padding:14px 20px;text-align:left;font-size:28px;background:#fff;border:4px solid var(--navy);border-radius:20px}
+.v{color:var(--red);font-weight:800}
+.pat{font-weight:700;border-bottom:5px dashed #b5b5b5}
+.card.on{background:#e6faf6}
+.card.on .pat{background:#b8f0e6;border-bottom:5px solid var(--teal)}
+.lab{display:none;margin-top:8px;font-size:23px;font-style:normal;font-weight:700;color:#0b6e63}
+.card.on .lab{display:block}
+.dots{display:flex;gap:10px;margin:0 0 18px}
+.dots i{width:36px;height:14px;border-radius:8px;background:#d9d2bd}
+.dots .d{background:var(--teal)}
+.dots .c{background:var(--sun);outline:3px solid var(--navy)}
+.big{margin:4px 0;font-size:68px;font-weight:800;color:var(--red)}
+.sent{margin:10px 0 26px;font-size:48px;font-weight:700}
+.gap{display:inline-block;min-width:190px;margin:0 8px;text-align:center;color:#999;border-bottom:6px solid var(--navy)}
+.gap.fill{color:var(--ok);border-color:var(--ok)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.opt{width:100%;font-size:30px}
+.good{background:#bdf3c7;border-color:var(--ok);box-shadow:0 6px 0 var(--ok)}
+.bad{background:#ffc9c4;border-color:var(--red);box-shadow:0 6px 0 var(--red)}
+.fb{margin-top:22px;padding:14px 22px;border-radius:18px;font-size:28px;font-weight:700;min-height:68px}
+.fb.ok{background:#bdf3c7}
+.fb.no{background:#ffe1dd}
+.nb{position:relative;padding:0 30px 0 100px;font-size:34px;line-height:54px;background:#fffef8 repeating-linear-gradient(transparent 0 52px,#9ec5ee 52px 54px);border:4px solid var(--navy);border-radius:8px 24px 24px 8px}
+.nb::before{content:"";position:absolute;left:66px;top:0;bottom:0;width:3px;background:var(--red)}
+.h{margin-top:54px;font-weight:800}
+.h:first-child{margin-top:0}
+.dash{height:54px;width:72%;background:repeating-linear-gradient(90deg,var(--navy) 0 14px,transparent 14px 26px) 0 26px/100% 4px no-repeat}
+.vb{font-weight:800;color:var(--red)}
+.ex{font-size:26px;color:#2a58b8}
+.warn{margin:24px 0 0;padding:14px 20px;border:4px dashed var(--red);border-radius:18px;font-size:26px;font-weight:700}
+.warn s{color:var(--red)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ezra’s Hobby Diner</h1>
+  <nav id="steps"></nav>
+  <div class="tools"><span id="clock">⏱ 10:00</span><span id="stars">⭐ 0</span><button class="btn" id="rs">↺ Restart</button></div>
+</header>
+<div class="strip"></div>
+<main id="app"></main>
+<script>
+const $=s=>document.querySelector(s),app=$("#app"),all=s=>[...app.querySelectorAll(s)];
+const NAMES=["Meet Ezra","Sort","Pick","Notebook"],MIN=[2,2,4,2];
+
+/* Stage 1: what Ezra does [before, verb, pattern, after, label] */
+const MEET=[
+["Ezra ","likes","playing"," football.","like + -ing"],
+["He ","loves","to swim"," in the sea.","love + to + verb"],
+["He ","enjoys","watching"," films.","enjoy + -ing"],
+["He ","hopes","to be"," a doctor.","hope + to + verb"],
+["He ","wants","to have"," rice for lunch.","want + to + verb"],
+["He is ","learning","to draw"," pictures.","learn + to + verb"]];
+
+/* Stage 2: [emoji, verb, index of correct pattern, feedback] */
+const SORT=[
+["👍","like",2,"Both are OK: I like playing. I like to play."],
+["❤️","love",2,"Both are OK: I love playing. I love to play."],
+["🎉","enjoy",0,"Only -ing: I enjoy playing. Never: I enjoy to play."],
+["🌟","hope",1,"Only to + verb: I hope to win. Never: I hope win."],
+["🎁","want",1,"Only to + verb: I want to go. Never: I want go."],
+["📚","learn",1,"Only to + verb: I learn to swim. Never: I learn swim."]];
+
+/* Stage 3: [before gap, after gap, options, correct indexes, feedback] */
+const PICK=[
+["I enjoy "," films.",["watching","to watch","to watching"],[0],"enjoy is followed by -ing only."],
+["I hope "," a doctor.",["be","to be","being"],[1],"hope needs to + verb. Never leave out to!"],
+["I want "," rice for lunch.",["have","to have","to having"],[1],"want needs to + verb. Never leave out to!"],
+["I love "," football.",["playing","to play","play"],[0,1],"love can take -ing or to + verb."],
+["She is learning "," English.",["to speak","to speaking","speak"],[0],"learn is followed by to + verb."],
+["Ezra enjoys "," pictures.",["to draw","drawing","draw"],[1],"enjoy is followed by -ing only."],
+["We like "," in the park.",["running","to run","to running"],[0,1],"like can take -ing or to + verb."],
+["Maya hopes "," a prize.",["winning","to win","win"],[1],"hope needs to + verb."]];
+const TOTAL=SORT.length+PICK.length;
+
+let st,qi,score,done,tl,tm;
+const clock=()=>{const t=Math.max(tl,0);$("#clock").textContent="⏱ "+Math.floor(t/60)+":"+String(t%60).padStart(2,"0");$("#clock").classList.toggle("late",tl<=60)};
+const tick=()=>{if(!tm)tm=setInterval(()=>{tl--;clock()},1000)};
+addEventListener("pointerdown",tick);            /* 10:00 clock starts on the first tap */
+function reset(){clearInterval(tm);tm=0;tl=600;score=0;go(0)}
+function go(n){st=n;qi=0;draw();scrollTo(0,0)}
+function draw(){
+  $("#steps").innerHTML=NAMES.map((n,i)=>`<span class="chip ${i==st?"on":i<st?"done":""}">${i<st?"✔":i+1} ${n}</span>`).join("");
+  $("#stars").textContent="⭐ "+score;clock();
+  [meet,quiz,quiz,note][st]();
+}
+
+function meet(){
+  app.innerHTML=`<div class="panel"><h2>🔍 Language detective <small>about ${MIN[0]} minutes</small></h2>
+  <p class="sub">What does Ezra like, love, enjoy, hope, want and learn? Tap a card to find the pattern.</p>
+  <div class="grid">${MEET.map(m=>`<button class="card">${m[0]}<span class="v">${m[1]}</span> <span class="pat">${m[2]}</span>${m[3]}<em class="lab">${m[4]}</em></button>`).join("")}</div>
+  <div class="nav"><button class="btn" id="all">🔍 Show all</button><button class="btn go" id="nx">Next ▶</button></div></div>`;
+  all(".card").forEach(c=>c.onclick=()=>c.classList.toggle("on"));
+  $("#all").onclick=()=>all(".card").forEach(c=>c.classList.add("on"));
+  $("#nx").onclick=()=>go(1);
+}
+
+function quiz(){
+  const isSort=st==1,Q=isSort?SORT:PICK,q=Q[qi],why=q[isSort?3:4];done=false;
+  const o=(isSort
+    ?["Only -ing","Only to + verb","Both: -ing or to + verb"].map((t,i)=>({t,ok:i==q[2]}))
+    :q[2].map((t,i)=>({t,ok:q[3].includes(i)}))).sort(()=>isSort?0:Math.random()-.5);
+  const body=isSort
+    ?`<div class="big">${q[0]} ${q[1]}</div><p class="sub">Which pattern comes after this verb?</p>`
+    :`<p class="sent">${q[0]}<span class="gap" id="gap">?</span>${q[1]}</p>`;
+  app.innerHTML=`<div class="panel"><h2>${isSort?"🧩 Sort the verbs":"✏️ Pick the right words"} <small>about ${MIN[st]} minutes</small></h2>
+  <div class="dots">${Q.map((_,i)=>`<i class="${i<qi?"d":i==qi?"c":""}"></i>`).join("")}</div>${body}
+  <div class="opts">${o.map(x=>`<button class="btn opt">${x.t}</button>`).join("")}</div><div class="fb" id="fb"></div>
+  <div class="nav"><span></span><button class="btn go" id="nx" hidden>${qi<Q.length-1?"Next ▶":"Continue ▶"}</button></div></div>`;
+  const B=all(".opt");
+  B.forEach((b,i)=>b.onclick=()=>{
+    if(done)return;done=true;
+    const hit=o[i].ok;if(hit)score++;
+    B.forEach((e,j)=>{if(o[j].ok)e.classList.add("good");else if(j==i)e.classList.add("bad");e.textContent=(o[j].ok?"✔ ":j==i?"✘ ":"")+e.textContent});
+    if(!isSort){const g=$("#gap");g.textContent=o.filter(x=>x.ok).map(x=>x.t).join(" / ");g.classList.add("fill")}
+    $("#fb").className="fb "+(hit?"ok":"no");
+    $("#fb").textContent=(hit?"✔ Yes! ":"✘ Not quite. ")+why;
+    $("#stars").textContent="⭐ "+score;$("#nx").hidden=false;
+  });
+  $("#nx").onclick=()=>{if(++qi<Q.length)quiz();else go(st+1)};
+}
+
+function note(){
+  const R=[["-ing and infinitive","like / love","I like playing = I like to play."],["Only -ing","enjoy","I enjoy playing."],["The infinitive only","hope, want, learn","I hope to win."]];
+  app.innerHTML=`<div class="panel"><h2>📒 Notebook rules <small>about ${MIN[3]} minutes</small></h2>
+  <p class="sub">⭐ You scored ${score} out of ${TOTAL}. Copy the rules into your notebook ✏️</p>
+  <div class="nb">${R.map(r=>`<div class="h">• ${r[0]}</div><div class="dash"></div><div class="vb">${r[1]}</div><div class="ex">${r[2]}</div>`).join("")}</div>
+  <p class="warn">⚠ Never write: <s>I hope be</s> &nbsp; <s>I want to playing</s> &nbsp; <s>I enjoy to play</s></p>
+  <div class="nav"><span></span><button class="btn go" id="rp">↺ Play again</button></div></div>`;
+  $("#rp").onclick=reset;
+}
+
+$("#rs").onclick=reset;
+reset();
+</script>
+</body>
+</html>
